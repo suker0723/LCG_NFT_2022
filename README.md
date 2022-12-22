@@ -1,1 +1,50 @@
-# LCG_NFT_2022
+# LCG_NFT
+
+Project: The NFT of Babel
+
+## Intro:
+
+This is a smart contract that encompasses all possible pictures of a certain dimension. 
+We are inspired by Jorge Luis Borges’ short story The Library of Babel, 
+an imaginative thought experiment where a heavenly library with infinite hexagonal rooms contains every possible book up to 410 pages. 
+Instead of bringing about pious librarians seeking divine truths in infinity, our NFT of babel may present an interesting opportunity for us to explore the idea, 
+the absurdity of digital ownership on blockchain.
+
+## How to use it:
+
+First clone this repo:
+
+Then go to the dir and run:
+
+```
+npm install
+npx hardhat node
+```
+This will initialize the hardhat Network.
+
+Then we run this command in other terminal to deploy the contracts:
+
+```
+npx hardhat --network localhost run scripts/deploy.js
+```
+
+Now we can start the react app in a new terminal:
+
+```
+cd my-app
+npm install
+npm run start
+```
+
+You will need metamask plugin to connect this app.
+
+After set up the metamask and connect, run this to load assets, you can use the same terminal for deploy step:
+
+```
+npx hardhat --network localhost addAssets "assets"  
+```
+
+### Please send email to zc2396@nyu.edu for any questions
+
+
+Scott Chu & Linsong You 2022
