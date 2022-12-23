@@ -35,7 +35,7 @@ cd my-app
 npm install
 npm run start
 ```
-Open http://localhost:3000/ to see your Dapp. You will need to have Metamask installed and listening to localhost 8545.
+Open http://localhost:3000/ to see the website. You will need to have Metamask installed and listening to localhost 8545.
 
 After set up the metamask and connect, run this to load assets, you can use the same terminal for deploy step:
 
