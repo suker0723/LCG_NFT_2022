@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu} from 'antd';
+import { Layout, Menu } from 'antd';
 import { EyeOutlined, SearchOutlined, EditOutlined } from '@ant-design/icons';
 import { ethers } from "ethers";
 
@@ -8,9 +8,9 @@ import contractAddress from "../contracts/contract-address.json";
 
 
 import Home from './Home';
-import {Search} from './Search';
-import {Browse} from './Browse';
-import {Customize} from './Customize';
+import { Search } from './Search';
+import { Browse } from './Browse';
+import { Customize } from './Customize';
 import NoWalletDetected from "./NoWalletDetected";
 import ConnectWallet from './ConnectWallet';
 
@@ -63,8 +63,8 @@ export class App extends React.Component {
       SVGAttributes: undefined,
       SVGBackground: '#638595',
       // Browse use
-      BrowseImage1:undefined,
-      BrowseAttributes1:undefined,
+      BrowseImage1: undefined,
+      BrowseAttributes1: undefined,
       RandomId: Math.floor(Math.random() * (10000 - 1) + 1),
       BrowseBackground1: '#638595',
 
@@ -78,19 +78,19 @@ export class App extends React.Component {
     this.state = this.initialState;
   }
 
-  
-  
-  render(){
-    
+
+
+  render() {
+
     let page;
     if (window.ethereum === undefined) {
       return <NoWalletDetected />;
     }
-    
+
     if (!this.state.selectedAddress) {
       return (
-        <ConnectWallet 
-          connectWallet={() => this._connectWallet()} 
+        <ConnectWallet
+          connectWallet={() => this._connectWallet()}
           networkError={this.state.networkError}
           dismiss={() => this._dismissNetworkError()}
         />
@@ -98,35 +98,35 @@ export class App extends React.Component {
     }
 
     const onClickMenu = (e) => {
-      this.setState({currentMenuItem: e.key});
+      this.setState({ currentMenuItem: e.key });
     };
-    
-    
-   
-    if(this.state.currentMenuItem === 'home'){
+
+
+
+    if (this.state.currentMenuItem === 'home') {
       page = <Home></Home>;
-    }else if (this.state.currentMenuItem === 'search'){
-      page = <Search 
-      getIndexInfo={this._getIndexInfo}
-      SVGImage={this.state.SVGImage}
-      SVGAttributes={this.state.SVGAttributes}
-      SVGBackground={this.state.SVGBackground}
+    } else if (this.state.currentMenuItem === 'search') {
+      page = <Search
+        getIndexInfo={this._getIndexInfo}
+        SVGImage={this.state.SVGImage}
+        SVGAttributes={this.state.SVGAttributes}
+        SVGBackground={this.state.SVGBackground}
       />;
-    }else if (this.state.currentMenuItem === 'browse'){
+    } else if (this.state.currentMenuItem === 'browse') {
       page = <Browse
-      getBrowseInfo={this._getBrowseInfo}
-      BrowseImage1={this.state.BrowseImage1}
-      BrowseAttributes1={this.state.BrowseAttributes1}
-      BrowseBackground1={this.state.BrowseBackground1}
-      RandomId={this.state.RandomId}
+        getBrowseInfo={this._getBrowseInfo}
+        BrowseImage1={this.state.BrowseImage1}
+        BrowseAttributes1={this.state.BrowseAttributes1}
+        BrowseBackground1={this.state.BrowseBackground1}
+        RandomId={this.state.RandomId}
       />;
-    }else if (this.state.currentMenuItem === 'customize'){
+    } else if (this.state.currentMenuItem === 'customize') {
       page = <Customize
-      SetCustomizeParams={this._setCustomize}
-      CustomizeIndex= {this.state.CustomizeIndex}
-      CustomizeImage= {this.state.CustomizeImage}
-      CustomizeAttributes= {this.state.CustomizeAttributes}
-      CustomizeBackground= {this.state.CustomizeBackground}
+        SetCustomizeParams={this._setCustomize}
+        CustomizeIndex={this.state.CustomizeIndex}
+        CustomizeImage={this.state.CustomizeImage}
+        CustomizeAttributes={this.state.CustomizeAttributes}
+        CustomizeBackground={this.state.CustomizeBackground}
       />
     }
     return (
@@ -136,8 +136,8 @@ export class App extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            onClick={onClickMenu} 
-            selectedKeys={[this.state.currentMenuItem]} 
+            onClick={onClickMenu}
+            selectedKeys={[this.state.currentMenuItem]}
             items={items}
           />
         </Header>
@@ -146,28 +146,28 @@ export class App extends React.Component {
             padding: '0 50px',
           }}
         >
-        
+
           <div
             className="site-layout-content"
             style={{
               padding: '10px',
             }}
           >
-           {page}
+            {page}
           </div>
-          
+
         </Content>
         <Footer
           style={{
             textAlign: 'center',
           }}
         >
-          Created by Scott Chu & Linsong You @2022 
+          Created by Scott Chu & Linsong You @2022
         </Footer>
       </Layout>
     );
   }
-  
+
 
   async _connectWallet() {
     // This method is run when the user clicks the Connect. It connects the
@@ -185,7 +185,7 @@ export class App extends React.Component {
     }
 
     this._initialize(selectedAddress);
-    
+
   }
 
   _checkNetwork() {
@@ -193,7 +193,7 @@ export class App extends React.Component {
       return true;
     }
 
-    this.setState({ 
+    this.setState({
       networkError: 'Please connect Metamask to Localhost:8545'
     });
 
@@ -207,7 +207,7 @@ export class App extends React.Component {
     this.setState({
       selectedAddress: userAddress,
     });
-   
+
     // Then, we initialize ethers, fetch the token's data, and start polling
     // for the user's balance.
 
@@ -230,51 +230,51 @@ export class App extends React.Component {
     );
 
   }
-  _getBrowseInfo=() =>{
+  _getBrowseInfo = () => {
     this._getBrowseImage_Attributes(this.state.RandomId);
   }
   async _getBrowseImage_Attributes(i) {
-    const result=await this._nft.punkImageSvg(i); 
-      const n_result = result.replace("data:image/svg+xml;utf8,", "");
-      this.setState({BrowseImage1: n_result});
-      const attribute1=await this._nft.punkAttributes(i);
-      this.setState({BrowseAttributes1: attribute1});
-      const backgroundColor= await this._nft.punkBackground(i);
-      this.setState({BrowseBackground1: backgroundColor});
+    const result = await this._nft.punkImageSvg(i);
+    const n_result = result.replace("data:image/svg+xml;utf8,", "");
+    this.setState({ BrowseImage1: n_result });
+    const attribute1 = await this._nft.punkAttributes(i);
+    this.setState({ BrowseAttributes1: attribute1 });
+    const backgroundColor = await this._nft.punkBackground(i);
+    this.setState({ BrowseBackground1: backgroundColor });
   }
 
-  _getIndexInfo = (index) =>{
+  _getIndexInfo = (index) => {
     this._getImage(index);
     this._getAttributes(index);
   }
   async _getImage(index) {
-    const result=await this._nft.punkImageSvg(index); 
+    const result = await this._nft.punkImageSvg(index);
     const n_result = result.replace("data:image/svg+xml;utf8,", "");
-    this.setState({SVGImage: n_result});
-  }
-  
-  async _getAttributes(index){
-    const result=await this._nft.punkAttributes(index);
-    this.setState({SVGAttributes: result});
-    const backgroundColor= await this._nft.punkBackground(index);
-    this.setState({SVGBackground: backgroundColor});
+    this.setState({ SVGImage: n_result });
   }
 
-  _setCustomize = (params1,params2,params3,params4,params5,params6,params7,params8) =>{
-    this._getCustomize_Attributes(params1,params2,params3,params4,params5,params6,params7,params8);
+  async _getAttributes(index) {
+    const result = await this._nft.punkAttributes(index);
+    this.setState({ SVGAttributes: result });
+    const backgroundColor = await this._nft.punkBackground(index);
+    this.setState({ SVGBackground: backgroundColor });
   }
 
-  async _getCustomize_Attributes(params1,params2,params3,params4,params5,params6,params7,params8){
-    const i = await this._nft.punkEncode(params1,params2,params3,params4,params5,params6,params7,params8);
+  _setCustomize = (params1, params2, params3, params4, params5, params6, params7, params8) => {
+    this._getCustomize_Attributes(params1, params2, params3, params4, params5, params6, params7, params8);
+  }
+
+  async _getCustomize_Attributes(params1, params2, params3, params4, params5, params6, params7, params8) {
+    const i = await this._nft.punkEncode(params1, params2, params3, params4, params5, params6, params7, params8);
     console.log(i);
-    const result=await this._nft.punkImageSvg(i); 
-      const n_result = result.replace("data:image/svg+xml;utf8,", "");
-      this.setState({CustomizeImage: n_result});
-      const attribute1=await this._nft.punkAttributes(i);
-      this.setState({CustomizeAttributes: attribute1});
-      const backgroundColor= await this._nft.punkBackground(i);
-      this.setState({CustomizeBackground: backgroundColor});
-      this.setState({CustomizeIndex: i})
+    const result = await this._nft.punkImageSvg(i);
+    const n_result = result.replace("data:image/svg+xml;utf8,", "");
+    this.setState({ CustomizeImage: n_result });
+    const attribute1 = await this._nft.punkAttributes(i);
+    this.setState({ CustomizeAttributes: attribute1 });
+    const backgroundColor = await this._nft.punkBackground(i);
+    this.setState({ CustomizeBackground: backgroundColor });
+    this.setState({ CustomizeIndex: i })
   }
-  
+
 }
