@@ -2,7 +2,6 @@
 pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
-// import "LCG.sol";
 
 contract NFTData {
     string internal constant SVG_HEADER = 'data:image/svg+xml;utf8,<svg xmlns="LCG_NFT" version="1.2" viewBox="0 0 24 24">';
@@ -128,16 +127,6 @@ contract NFTData {
 	uint8 idxBeard  = uint8((decoded  >> 17) & 15);
 	uint8 idxHair   = uint8((decoded  >> 21) & 31);
 	uint8 idxArch   = uint8(((decoded >> 26) & 15) % 11);
-
-	/*
-	console.log(idxArch);
-	console.log(idxHair);
-	console.log(idxBeard);
-	console.log(idxEyes);
-	console.log(idxCheeks);
-	console.log(idxMouth);
-	console.log(idxOther);	
-	*/
 	
 	bool isMale = (idxArch < 4) || (idxArch > 7);
 
@@ -289,12 +278,6 @@ contract NFTData {
         }
     }
 
-    //// Internal helpers to pack attribute choices into index
-
-    // function generateIndices(uint8 hairChoice, uint8 eyesChoice) internal pure returns (uint8 assetIdx) {
-    // 	uint8 packed = (_hair & 31) << 19 | (_eyes & 15) << 11;
-    // 	return packed;
-    // }
 
     //// String stuff from https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Strings.sol
 
