@@ -44,6 +44,13 @@ After set up the metamask and connect, run this to load assets, you can use the 
 npx hardhat --network localhost addAssets "assets"  
 ```
 
+## Tips:
+
+Because each action in this website is directly sending a transaction to the contract. It could be slow because there are many encoding and decoding in the contract to compute the image of NFT. So please wait for the transaction to complete and don't click other pages in this website to cause more transactions waiting.
+
+If there is a problem in transaction, you may restart the hardhat network.
+
+
 ### Please send email to zc2396@nyu.edu for any questions
 
 
